@@ -3,6 +3,7 @@ import QrScanner from 'qr-scanner';
 
 
 const canvas = document.getElementById('render-canvas');
+const startButton = document.getElementById('start-button');
 const engine = new BABYLON.Engine(canvas, true, {alpha: true});
 const video = document.getElementById('qr-video');
 const camQrResult = document.getElementById('cam-qr-result');
@@ -17,7 +18,13 @@ function setResult(element, result) {
   console.log('QR Code Result:', result);
   camQrResult.textContent = result;
 };
-scanner.start();
+
+startButton.addEventListener('click', () => {
+  console.log('Starting QR Scanner...');
+  scanner.start().catch((error) => {
+    console.error('Error starting QR Scanner:', error);
+  });
+});
 
 const createScene = () => {
   const scene = new BABYLON.Scene(engine);
