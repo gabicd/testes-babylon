@@ -2,6 +2,7 @@ import * as BABYLON from '@babylonjs/core';
 import QrScanner from 'qr-scanner';
 
 
+const dataDiv = document.getElementById('entity-data');
 const canvas = document.getElementById('render-canvas');
 const startButton = document.getElementById('start-button');
 const engine = new BABYLON.Engine(canvas, true, {alpha: true});
@@ -14,9 +15,30 @@ const scanner = new QrScanner(
   }
 );
 
+const assetData = {
+  entidade: {
+    id: 1,
+    nome: 'Teste',
+    descricao: 'Teste de entidade'
+  }
+};
+
 function setResult(element, result) {
   console.log('QR Code Result:', result);
-  camQrResult.textContent = result;
+  camQrResult.textContent = result.data;
+  if(result.data == assetData.entidade.id) {
+    dataDiv.innerHTML = `
+      <h3>Entity Data</h3>
+      <p>ID: ${assetData.entidade.id}</p>
+      <p>Name: ${assetData.entidade.nome}</p>
+      <p>Description: ${assetData.entidade.descricao}</p>
+    `;
+    const scene = createScene();
+
+    engine.runRenderLoop(() => {
+    scene.render();
+});
+  }
 };
 
 startButton.addEventListener('click', () => {
@@ -35,9 +57,5 @@ const createScene = () => {
   return scene;
 }
 
-const scene = createScene();
 
-engine.runRenderLoop(() => {
-  scene.render();
-});
 
