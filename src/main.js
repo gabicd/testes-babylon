@@ -15,23 +15,17 @@ const scanner = new QrScanner(
   }
 );
 
-const loadData = async () => {
-  try {
-    const response = await fetch('./asset.json');
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok ' + response.statusText);
-    }
+const assetData = {
 
-    const data = await response.json();
-    return data;
+  entidade: {
+    id: 1,
+    nome: 'Teste',
+    descricao: 'Teste de entidade'
+
   }
-  catch (error) {
-    console.error('Error loading asset data:', error); 
-  } 
-}
 
-const assetData = await loadData();
+};
 
 function setResult(element, result) {
   console.log('QR Code Result:', result);
