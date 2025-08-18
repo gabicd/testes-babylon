@@ -15,7 +15,7 @@ const scanner = new QrScanner(
 
 function setResult(element, result) {
   console.log('QR Code Result:', result);
-  
+  camQrResult.textContent = result;
 };
 scanner.start();
 
