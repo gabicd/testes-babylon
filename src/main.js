@@ -18,14 +18,14 @@ const scanner = new QrScanner(
 const loadData = async () => {
   try {
     const response = await fetch('asset.json');
-    assetData = await response.json();
+    const data = await response.json();
   }
   catch (error) {
     console.error('Error loading asset data:', error); 
   } 
 }
 
-loadData();
+const assetData = loadData();
 
 function setResult(element, result) {
   console.log('QR Code Result:', result);
