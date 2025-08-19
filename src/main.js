@@ -59,8 +59,7 @@ const createScene = async () => {
     await BABYLON.ImportMeshAsync(
       "",         
       "./models/",
-      "model.gltf", // The name of the file to load   
-      scene          
+      "model.gltf"      
     );
     console.log("Model loaded successfully!");
   } catch (e) {
