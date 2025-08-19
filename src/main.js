@@ -57,8 +57,8 @@ const createScene = async () => {
   scene.createDefaultCameraOrLight(true, false, true);
   try {
     await BABYLON.ImportMeshAsync(
-      null,         
-      "./",
+      "",         
+      "./models/",
       "model.gltf", // The name of the file to load   
       scene          
     );
