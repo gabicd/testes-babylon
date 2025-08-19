@@ -1,6 +1,7 @@
 import * as BABYLON from '@babylonjs/core';
 import QrScanner from 'qr-scanner';
 import "@babylonjs/loaders/glTF";
+import {Map} from 'maplibre-gl';
 
 
 const dataDiv = document.getElementById('entity-data');
@@ -16,6 +17,15 @@ const scanner = new QrScanner(
   }
 );
 
+const map = new Map({
+  container: 'map',
+  style: 'https://demotiles.maplibre.org/style.json',
+  center: [0, 0],
+  zoom: 2,
+  pitch: 0,
+  bearing: 0,
+});
+
 
 const assetData = {
   entidade: {
@@ -26,7 +36,7 @@ const assetData = {
 
 };
 
-async function setResult(element, result) {
+async function setResult(element, result) { //resultado do scan
   console.log('QR Code Result:', result);
   camQrResult.textContent = result.data;
   if(result.data == assetData.entidade.id) {
@@ -40,20 +50,20 @@ async function setResult(element, result) {
 
     engine.runRenderLoop(() => {
     scene.render();
-
-    scanner.stop();
+    
+    //limitar scans por segundo
 });
   }
 };
 
-startButton.addEventListener('click', () => {
+startButton.addEventListener('click', () => { //start QR Scanner
   console.log('Starting QR Scanner...');
   scanner.start().catch((error) => {
     console.error('Error starting QR Scanner:', error);
   });
 });
 
-const createScene = async () => {
+const createScene = async () => {             //criar a cena de renderização
   const scene = new BABYLON.Scene(engine);
   scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
   scene.createDefaultCameraOrLight(true, false, true);
