@@ -1,5 +1,6 @@
 import * as BABYLON from '@babylonjs/core';
 import QrScanner from 'qr-scanner';
+import { registerBuiltInLoaders } from "@babylonjs/loaders/dynamic";
 
 
 const dataDiv = document.getElementById('entity-data');
@@ -17,12 +18,10 @@ const scanner = new QrScanner(
 
 
 const assetData = {
-
   entidade: {
     id: 1,
     nome: 'Teste',
     descricao: 'Teste de entidade'
-
   }
 
 };
@@ -52,11 +51,12 @@ startButton.addEventListener('click', () => {
   });
 });
 
-const createScene = () => {
+const createScene = async () => {
   const scene = new BABYLON.Scene(engine);
   scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
   scene.createDefaultCameraOrLight(true, false, true);
-  const box = new BABYLON.MeshBuilder.CreateBox()
+  await BABYLON.ImportMeshAsync("./public/model.gltf", scene);
+  //const box = new BABYLON.MeshBuilder.CreateBox()
 
   return scene;
 }
