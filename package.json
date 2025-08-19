@@ -9,10 +9,11 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@babylonjs/core": "^8.23.1",
+    
     "vite": "^7.1.2"
   },
   "dependencies": {
+    "@babylonjs/core": "^8.23.1",
     "@babylonjs/loaders": "^8.23.1",
     "qr-scanner": "^1.4.2"
   }
