@@ -56,10 +56,11 @@ const createScene = async () => {
   scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
   scene.createDefaultCameraOrLight(true, false, true);
   try {
-    await BABYLON.ImportMeshAsync(
+    BABYLON.SceneLoader.ImportMesh(
       "",         
       "./models/",
-      "model.gltf"      
+      "model.gltf",
+      scene      
     );
     console.log("Model loaded successfully!");
   } catch (e) {
