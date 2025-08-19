@@ -2,6 +2,7 @@ import * as BABYLON from '@babylonjs/core';
 import QrScanner from 'qr-scanner';
 import "@babylonjs/loaders/glTF";
 import {Map} from 'maplibre-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 
 const dataDiv = document.getElementById('entity-data');
