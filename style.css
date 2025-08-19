@@ -20,8 +20,8 @@
 #map {
   position: absolute; /* Or however you want to position it */
   top: 10px;
-  left: 10px;
-  width: 400px;  /* Give it a specific size */
-  height: 300px; /* Give it a specific size */
-  z-index: 100; /* Make sure it's visible on top of other elements */
+  left: 1000px;
+  width: 600px;  /* Give it a specific size */
+  height: 500px; /* Give it a specific size */
+  
 }

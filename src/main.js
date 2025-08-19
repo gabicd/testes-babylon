@@ -1,7 +1,7 @@
 import * as BABYLON from '@babylonjs/core';
 import QrScanner from 'qr-scanner';
 import "@babylonjs/loaders/glTF";
-import {Map} from 'maplibre-gl';
+import {Map, Marker} from 'maplibre-gl';
 
 
 const dataDiv = document.getElementById('entity-data');
@@ -24,6 +24,21 @@ const map = new Map({
   zoom: 2,
   pitch: 0,
   bearing: 0,
+});
+
+const marker = new Marker({
+  scale: 1
+})
+  .setLngLat([-47.8833, -22.0167])
+  .addTo(map);
+
+const markerElement = marker.getElement();
+
+markerElement.addEventListener('click', () => { //start QR Scanner
+  console.log('Starting QR Scanner...');
+  scanner.start().catch((error) => {
+    console.error('Error starting QR Scanner:', error);
+  });
 });
 
 
