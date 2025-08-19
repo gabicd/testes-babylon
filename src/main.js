@@ -56,11 +56,9 @@ const createScene = async () => {
   scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
   scene.createDefaultCameraOrLight(true, false, true);
   try {
-    await BABYLON.ImportMeshAsync(
-      null,             // Pass "" to load all meshes from the file
-      "./public",           // The root URL for the model files
-      "model.gltf",   // The name of the file to load
-      scene           // The scene to load the model into
+    await BABYLON.ImportMeshAsync(         
+      "./public",           
+      scene          
     );
     console.log("Model loaded successfully!");
   } catch (e) {
