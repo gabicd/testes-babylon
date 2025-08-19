@@ -57,7 +57,7 @@ const createScene = async () => {
   scene.createDefaultCameraOrLight(true, false, true);
   try {
     await BABYLON.ImportMeshAsync(         
-      "./public",           
+      "./",           
       scene          
     );
     console.log("Model loaded successfully!");
