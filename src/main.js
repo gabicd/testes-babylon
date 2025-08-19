@@ -40,6 +40,8 @@ async function setResult(element, result) {
 
     engine.runRenderLoop(() => {
     scene.render();
+
+    scanner.stop();
 });
   }
 };
@@ -56,7 +58,7 @@ const createScene = async () => {
   scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
   scene.createDefaultCameraOrLight(true, false, true);
   try {
-    BABYLON.SceneLoader.ImportMesh(
+    BABYLON.SceneLoader.ImportMesh(           //deprecado, mas funciona
       "",         
       "./models/",
       "model.gltf",
