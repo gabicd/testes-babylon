@@ -1,6 +1,6 @@
 import * as BABYLON from '@babylonjs/core';
 import QrScanner from 'qr-scanner';
-import { registerBuiltInLoaders } from "@babylonjs/loaders/dynamic";
+import "@babylonjs/loaders/glTF";
 
 
 const dataDiv = document.getElementById('entity-data');
@@ -26,7 +26,7 @@ const assetData = {
 
 };
 
-function setResult(element, result) {
+async function setResult(element, result) {
   console.log('QR Code Result:', result);
   camQrResult.textContent = result.data;
   if(result.data == assetData.entidade.id) {
@@ -36,7 +36,7 @@ function setResult(element, result) {
       <p>Name: ${assetData.entidade.nome}</p>
       <p>Description: ${assetData.entidade.descricao}</p>
     `;
-    const scene = createScene();
+    const scene = await createScene();
 
     engine.runRenderLoop(() => {
     scene.render();
@@ -55,8 +55,17 @@ const createScene = async () => {
   const scene = new BABYLON.Scene(engine);
   scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
   scene.createDefaultCameraOrLight(true, false, true);
-  await BABYLON.ImportMeshAsync("./public/model.gltf", scene);
-  //const box = new BABYLON.MeshBuilder.CreateBox()
+  try {
+    await BABYLON.ImportMeshAsync(
+      null,             // Pass "" to load all meshes from the file
+      "./public",           // The root URL for the model files
+      "model.gltf",   // The name of the file to load
+      scene           // The scene to load the model into
+    );
+    console.log("Model loaded successfully!");
+  } catch (e) {
+    console.error("Failed to load model.", e);
+  }
 
   return scene;
 }
